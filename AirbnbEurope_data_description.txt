@@ -1,0 +1,132 @@
+The Airbnb Europe dataset is a constructed dataset used for econometric and data analysis purposes. It is based on publicly available data from Inside Airbnb and combines information on listings, availability calendars, and reviews across multiple European cities. The dataset is designed to analyze pricing behavior, occupancy patterns, and the role of host characteristics and booking constraints in the short-term rental market.
+
+Here are some key details about the Airbnb Europe dataset:
+
+Number of Instances: The dataset contains up to approximately 20,000 observations (up to 2000 randomly sampled listings per city).
+Number of Features: The dataset includes structural, behavioral, and geographic variables describing listings, hosts, pricing, availability, and reviews.
+Target Variables: The main variables of interest are price (and log_price) and occupancy.
+Data Type: Cross-sectional dataset constructed from listings, calendar, and reviews files.
+Geographic Coverage: The dataset includes 10 European cities: Amsterdam, Athens, Barcelona, Berlin, Copenhagen, London, Stockholm, Rome, Vienna, and Prague.
+
+The dataset is suitable for econometric analysis, including regression modeling, demand estimation, price elasticity analysis, and evaluation of platform-related effects such as reputation and booking frictions.
+
+DATA CONSTRUCTION
+
+The dataset is constructed from three main raw files for each city:
+
+        listings.csv        Listing characteristics and host information
+        calendar.csv        Daily availability data
+        reviews.csv         Review dates
+
+Key transformations applied to the data:
+
+        price               Cleaned by removing currency symbols and converting to numeric
+        dates               Converted to datetime format
+        host_tenure_days    Calculated as number of days since host joined
+        availability_rate   Mean of availability indicator
+        occupancy           Computed as 1 - availability_rate
+        reviews_last_year   Number of reviews in last 365 days
+        price               Winsorized at 1st and 99th percentiles
+        log_price           Computed as log(price)
+        missing values      reviews_last_year filled with 0
+        sampling            Random sampling (max 2000 listings per city)
+
+All processed city datasets are merged into a single dataset named airbnb_europe_final.csv.
+
+IMPORTANT NOTE ON OCCUPANCY
+
+Occupancy is not directly observed in the dataset. It is approximated using availability data.
+Unavailable dates may represent either booked nights or dates blocked by hosts.
+Therefore, occupancy should be interpreted as a proxy for demand rather than an exact measure.
+
+VARIABLE DESCRIPTIONS
+
+listing_id: Unique identifier of the Airbnb listing
+
+city: City where the listing is located
+
+host_since: Date when the host joined Airbnb
+
+host_tenure_days: Number of days the host has been active on the platform
+
+host_is_superhost: Indicates whether the host is a Superhost
+
+        1       Yes
+        0       No
+
+host_total_listings_count: Total number of listings owned by the host
+
+neighbourhood_cleansed: Name of the neighborhood where the listing is located
+
+latitude: Geographic latitude coordinate
+
+longitude: Geographic longitude coordinate
+
+property_type: Type of property (for example apartment, house, etc.)
+
+room_type: Type of room offered
+
+        Entire home/apt     Entire property
+        Private room        Private room within property
+        Shared room         Shared sleeping space
+
+accommodates: Number of guests the listing can accommodate
+
+bathrooms: Number of bathrooms
+
+bedrooms: Number of bedrooms
+
+beds: Number of beds
+
+price: Nightly listing price (cleaned and winsorized, USD)
+
+log_price: Natural logarithm of price
+
+minimum_nights: Minimum number of nights required per booking
+
+instant_bookable: Indicates whether instant booking is enabled
+
+        1       Yes
+        0       No
+
+availability_365: Number of days the listing is available in a year
+
+occupancy: Proxy for demand, calculated as
+
+        occupancy = 1 - availability_rate
+        Values range from 0 to 1
+
+number_of_reviews: Total number of reviews for the listing
+
+reviews_per_month: Average number of reviews per month
+
+review_scores_rating: Overall rating score of the listing
+
+reviews_last_year: Number of reviews received in the last 365 days
+
+DATA CHARACTERISTICS
+
+        data types          Contains both numerical and categorical variables
+        features            Includes geographic, economic, and behavioral attributes
+        structure           Combines listing characteristics with aggregated time-based variables
+        usage               Suitable for regression, classification, and econometric analysis
+
+SAMPLING
+
+        method              Random sampling with fixed seed
+        limit               Up to 2000 listings per city
+        purpose             Ensures balanced representation and manageable dataset size
+
+LIMITATIONS
+
+        occupancy           Proxy variable and may contain measurement error
+        availability        Does not perfectly reflect real demand
+        structure           Cross-sectional dataset (limited time dimension)
+        sampling            May reduce representativeness for large cities
+        data quality        Possible missing or noisy values
+
+INTENDED USE
+
+        methods             OLS, log-linear regression, logistic regression, fractional models
+        applications        Price elasticity, demand estimation, booking constraints, reputation effects
+        goal                Understanding Airbnb pricing and occupancy dynamics
