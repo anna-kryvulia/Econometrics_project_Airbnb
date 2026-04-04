@@ -41,68 +41,68 @@ Therefore, occupancy should be interpreted as a proxy for demand rather than an 
 
 VARIABLE DESCRIPTIONS
 
-listing_id: Unique identifier of the Airbnb listing
+listing_id: (integer) Unique identifier of the Airbnb listing
 
-city: City where the listing is located
+city: (string) City where the listing is located
 
-host_since: Date when the host joined Airbnb
+host_since: (date) Date when the host joined Airbnb
 
-host_tenure_days: Number of days the host has been active on the platform
+host_tenure_days: (integer) Number of days the host has been active on the platform
 
-host_is_superhost: Indicates whether the host is a Superhost
+host_is_superhost: (binary) Indicates whether the host is a Superhost
 
         1       Yes
         0       No
 
-host_total_listings_count: Total number of listings owned by the host
+host_total_listings_count: (integer) Total number of listings owned by the host
 
-neighbourhood_cleansed: Name of the neighborhood where the listing is located
+neighbourhood_cleansed: (string) Name of the neighborhood where the listing is located
 
-latitude: Geographic latitude coordinate
+latitude: (float) Geographic latitude coordinate
 
-longitude: Geographic longitude coordinate
+longitude: (float) Geographic longitude coordinate
 
-property_type: Type of property (for example apartment, house, etc.)
+property_type: (string) Type of property (for example apartment, house, etc.)
 
-room_type: Type of room offered
+room_type: (categorical) Type of room offered
 
         Entire home/apt     Entire property
         Private room        Private room within property
         Shared room         Shared sleeping space
 
-accommodates: Number of guests the listing can accommodate
+accommodates: (integer) Number of guests the listing can accommodate
 
-bathrooms: Number of bathrooms
+bathrooms: (float) Number of bathrooms
 
-bedrooms: Number of bedrooms
+bedrooms: (integer) Number of bedrooms
 
-beds: Number of beds
+beds: (integer) Number of beds
 
-price: Nightly listing price (cleaned and winsorized, USD)
+price: (float) Nightly listing price (cleaned and winsorized, USD)
 
-log_price: Natural logarithm of price
+log_price: (float) Natural logarithm of price
 
-minimum_nights: Minimum number of nights required per booking
+minimum_nights: (integer) Minimum number of nights required per booking
 
-instant_bookable: Indicates whether instant booking is enabled
+instant_bookable: (binary) Indicates whether instant booking is enabled
 
         1       Yes
         0       No
 
-availability_365: Number of days the listing is available in a year
+availability_365: (integer) Number of days the listing is available in a year
 
-occupancy: Proxy for demand, calculated as
+occupancy: (float) Proxy for demand, calculated as
 
         occupancy = 1 - availability_rate
         Values range from 0 to 1
 
-number_of_reviews: Total number of reviews for the listing
+number_of_reviews: (integer) Total number of reviews for the listing
 
-reviews_per_month: Average number of reviews per month
+reviews_per_month: (float) Average number of reviews per month
 
-review_scores_rating: Overall rating score of the listing
+review_scores_rating: (float) Overall rating score of the listing
 
-reviews_last_year: Number of reviews received in the last 365 days
+reviews_last_year: (integer) Number of reviews received in the last 365 days
 
 DATA CHARACTERISTICS
 
